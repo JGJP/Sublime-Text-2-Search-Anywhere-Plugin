@@ -10,7 +10,7 @@ The preferred method is to use the [Sublime Package Manager](http://wbond.net/su
 
 ## Complete Documentation
 
-A website is currently under construction to explain the usage of the plugin in details. In the meantime, please visit this [Web Site](http://www.ericmartel.com/sublime-text-2-search-anywhere/).
+For usage instructions, please visit the [project page on GitHub](https://github.com/ericmartel/Sublime-Text-2-Search-Anywhere-Plugin).
 
 # License
 
