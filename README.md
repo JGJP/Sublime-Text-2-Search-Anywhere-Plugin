@@ -8,6 +8,24 @@ The preferred method is to use the [Sublime Package Manager](http://wbond.net/su
 
     $ https://github.com/ericmartel/Sublime-Text-2-Search-Anywhere-Plugin
 
+## Customizing the search engines
+
+The list of search engines is defined by the `searchanywhere_searchengines` setting. To customize it, override the setting in your user settings.
+
+Create or edit `Packages/User/searchanywhere.sublime-settings` (use `Preferences > Browse Packages…` to find the directory) and add your own list:
+
+    {
+        "searchanywhere_searchengines": [
+            {
+                "name": "DuckDuckGo",
+                "baseurl": "duckduckgo.com",
+                "searchurl": "https://duckduckgo.com/?q={0}"
+            }
+        ]
+    }
+
+Each entry has a `name` (shown in the quick panel), a `baseurl` (shown next to the name) and a `searchurl` where `{0}` is replaced by the search text.
+
 ## Complete Documentation
 
 A website is currently under construction to explain the usage of the plugin in details. In the meantime, please visit this [Web Site](http://www.ericmartel.com/sublime-text-2-search-anywhere/).

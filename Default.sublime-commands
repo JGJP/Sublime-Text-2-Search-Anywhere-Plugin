@@ -22,5 +22,13 @@
     {
         "caption": "Search Anywhere: From Input (ask Search Engine)",
         "command": "search_anywhere_from_input_ask"
+    },
+    {
+        "caption": "Search Anywhere: Settings",
+        "command": "edit_settings",
+        "args": {
+            "base_file": "${packages}/Search Anywhere/searchanywhere.sublime-settings",
+            "default": "{\n\t$0\n}\n"
+        }
     }
 ]

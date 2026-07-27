@@ -41,27 +41,37 @@ def SearchFor(view, text, searchurl):
     url = searchurl.replace('{0}', text.replace(' ','%20'))
     webbrowser.open_new_tab(url)
 
-def ShowSearchEnginesList(window, callback):
-    searchengines = []
-    if os.path.exists(searchanywhere_dir + os.sep + 'searchengines.json'):
-        f = open(searchanywhere_dir + os.sep + 'searchengines.json')
+# Returns the list of search engines. When the 'searchanywhere_searchengines'
+# setting is defined (e.g. in the user's SearchAnywhere.sublime-settings), it
+# takes precedence over the bundled searchengines.json, so users can customize
+# the list without editing package files that get overwritten on update.
+def GetSearchEngines():
+    settings = sublime.load_settings(__name__ + '.sublime-settings')
+    searchengines = settings.get('searchanywhere_searchengines')
+    if searchengines:
+        return searchengines
+
+    filename = searchanywhere_dir + os.sep + 'searchengines.json'
+    if os.path.exists(filename):
+        f = open(filename)
         searchengineslist = json.load(f)
         f.close()
+        return searchengineslist.get('searchengines')
 
-        for entry in searchengineslist.get('searchengines'):
-            formattedentry = []
-            formattedentry.append(entry.get('name'))
-            formattedentry.append(entry.get('baseurl'))
-            searchengines.append(formattedentry)
+    return []
+
+def ShowSearchEnginesList(window, callback):
+    searchengines = []
+    for entry in GetSearchEngines():
+        formattedentry = []
+        formattedentry.append(entry.get('name'))
+        formattedentry.append(entry.get('baseurl'))
+        searchengines.append(formattedentry)
 
     window.show_quick_panel(searchengines, callback)
 
 def GetSearchEngineEntry(picked):
-    f = open(searchanywhere_dir + os.sep + 'searchengines.json')
-    searchengineslist = json.load(f)
-    entry = searchengineslist.get('searchengines')[picked]
-    f.close()
-    return entry
+    return GetSearchEngines()[picked]
 
 class SearchAnywhereFromSelectionAskCommand(sublime_plugin.TextCommand):
     def run(self, edit):

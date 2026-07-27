@@ -51,5 +51,35 @@
                 ]
             }
         ]
+    },
+    {
+        "caption": "Preferences",
+        "mnemonic": "n",
+        "id": "preferences",
+        "children":
+        [
+            {
+                "caption": "Package Settings",
+                "mnemonic": "P",
+                "id": "package-settings",
+                "children":
+                [
+                    {
+                        "caption": "Search Anywhere",
+                        "children":
+                        [
+                            {
+                                "command": "edit_settings",
+                                "args": {
+                                    "base_file": "${packages}/Search Anywhere/searchanywhere.sublime-settings",
+                                    "default": "{\n\t$0\n}\n"
+                                },
+                                "caption": "Settings"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
     }
 ]
